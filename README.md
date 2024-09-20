@@ -1,1 +1,1 @@
-# Simple Todo Adder using React
+# Simple Todo List using React
