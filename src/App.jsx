@@ -26,11 +26,30 @@ function App() {
     persistData(newTodoList)
   }
 
-  function handleEditTodo(index){
-    const EditingValue = todos[index]
-    setCurrentTodo(EditingValue)
+  // function handleEditTodo(index){
+  //   const EditingValue = todos[index]
+  //   setCurrentTodo(EditingValue)
+  //   handleDeleteTodo(index)
+  // }
+
+
+  function handleEditTodo(index) {
+    // Confirm if there's an unsaved todo
+    if (currentTodo.trim() && !window.confirm("You have unsaved changes. Do you want to discard them?")) {
+      return; // Exit if the user does not want to discard changes
+    }
+  
+    // Save the current todo if there's a value
+    if (currentTodo.trim()) {
+      handleAddTodos(currentTodo);
+    }
+  
+    // Set the todo to edit
+    const editingValue = todos[index];
+    setCurrentTodo(editingValue);
     handleDeleteTodo(index)
   }
+
 
   useEffect(() => {
     if (!localStorage){
